@@ -1,64 +1,180 @@
 <!doctype html>
-- YOUR_EMAIL: contact mailto link
-- FIVERR_LINK: your Fiverr profile link (https://www.fiverr.com/yourname)
-- Replace portfolio images with your own or upload into images/ folder
--->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>YOUR NAME — Web & Design</title>
+  <meta name="description" content="Websites, software, business cards & design" />
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --accent:#0b74de;
+      --bg:#fbfdff;
+      --muted:#6b7280;
+      --card:#ffffff;
+      --maxw:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial; margin:0; color:#0f172a; background:var(--bg); -webkit-font-smoothing:antialiased}
+    .container{max-width:var(--maxw); margin:36px auto; padding:20px}
+    header{display:flex;align-items:center;justify-content:space-between; gap:16px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .brand .logo{width:46px;height:46px;border-radius:10px; background:linear-gradient(135deg,var(--accent),#06b6d4); color:white;display:flex;align-items:center;justify-content:center;font-weight:700}
+    nav a{margin-left:12px;color:var(--muted);text-decoration:none;font-weight:600}
+    .hero{display:flex;gap:28px;align-items:center;margin-top:20px}
+    .hero .left{flex:1}
+    .kicker{display:inline-block;background:rgba(11,116,222,0.12);color:var(--accent);padding:6px 10px;border-radius:999px;font-weight:600;font-size:13px}
+    h1{font-size:30px;margin:12px 0 8px 0;line-height:1.05}
+    p.lead{margin:0;color:#334155}
+    .cta-group{margin-top:18px}
+    .btn{display:inline-block;padding:10px 16px;border-radius:10px;background:var(--accent);color:white;text-decoration:none;font-weight:700;margin-right:8px;transition:transform .18s ease}
+    .btn-secondary{display:inline-block;padding:10px 14px;border-radius:10px;background:transparent;border:1px solid #e6eefc;color:var(--accent);text-decoration:none;font-weight:700}
+    .btn:hover{transform:translateY(-3px)}
+    .hero-image{width:300px;height:300px;border-radius:14px;overflow:hidden;flex-shrink:0;background:#fff;box-shadow:0 8px 30px rgba(12,14,24,0.08)}
+    .hero-image img{width:100%;height:100%;object-fit:cover;display:block}
 
+    /* Services */
+    .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:28px}
+    .card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 6px 18px rgba(12,14,24,0.04);border:1px solid rgba(15,23,42,0.03);transition:transform .18s ease, box-shadow .18s ease}
+    .card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(12,14,24,0.06)}
+    .card h3{margin:0 0 8px 0;font-size:16px}
+    .card p{margin:0;color:var(--muted);font-size:14px}
 
-<div class="wrap">
-<header>
-<div>
-<h1>YOUR NAME</h1>
-<p>Websites • Software • Business Cards • Designs</p>
-</div>
-<div>
-<p>Contact: <a href="mailto:YOUR_EMAIL">YOUR_EMAIL</a></p>
-</div>
-</header>
+    /* Portfolio */
+    .portfolio{margin-top:32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+    .item{border-radius:10px;overflow:hidden;background:#fff;box-shadow:0 6px 18px rgba(12,14,24,0.04);cursor:pointer;transition:transform .18s ease}
+    .item img{width:100%;height:160px;object-fit:cover;display:block}
+    .item .meta{padding:10px}
+    .item:hover{transform:translateY(-6px)}
 
+    footer{margin-top:36px;padding:18px;border-top:1px solid rgba(15,23,42,0.04);color:var(--muted);font-size:14px;border-radius:8px}
 
-<section class="hero">
-<div class="info">
-<h2>Hello — I build websites & designs that sell</h2>
-<p>Simple, fast, and professional work for small businesses and freelancers. I make websites, custom software, eye-catching business cards, and digital designs.</p>
-<a class="btn" href="FIVERR_LINK" target="_blank" rel="noopener">Hire me on Fiverr</a>
-</div>
-<img src="https://via.placeholder.com/220x220.png?text=Your+Logo" alt="logo" width="140" height="140" style="border-radius:12px;object-fit:cover">
-</section>
+    /* Reveal animations */
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.2,.9,.2,1), transform .6s cubic-bezier(.2,.9,.2,1)}
+    .reveal.in-view{opacity:1;transform:none}
 
+    /* small devices */
+    @media (max-width:800px){
+      .hero{flex-direction:column;align-items:flex-start}
+      .hero-image{width:100%;height:220px}
+      nav{display:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="reveal">
+      <div class="brand">
+        <div class="logo">YR</div>
+        <div>
+          <div style="font-weight:700">YOUR NAME</div>
+          <div style="font-size:12px;color:var(--muted)">Websites • Software • Design</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
 
-<section class="services">
-<div class="card">
-<h3>Custom Websites</h3>
-<p>Responsive sites, landing pages, and online stores.</p>
-</div>
-<div class="card">
-<h3>Software</h3>
-<p>Simple web apps and automation tools to speed up work.</p>
-</div>
-<div class="card">
-<h3>Business Cards</h3>
-<p>Print-ready designs that make a great first impression.</p>
-</div>
-<div class="card">
-<h3>Designs</h3>
-<p>Logos, banners, social posts, and promotional graphics.</p>
-</div>
-</section>
+    <section class="hero reveal" style="margin-top:8px">
+      <div class="left">
+        <div class="kicker">Full-stack • Designer</div>
+        <h1>I build modern websites and designs that help your business grow</h1>
+        <p class="lead">Simple, fast, and professional work — websites, custom web tools, print-ready business cards and marketing images. I focus on clear design and fast delivery.</p>
+        <div class="cta-group">
+          <a class="btn" href="FIVERR_LINK" target="_blank" rel="noopener">Hire me on Fiverr</a>
+          <a class="btn-secondary" href="#contact">Contact</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <!-- Replace with your logo or hero image (images/hero.jpg) -->
+        <img src="https://via.placeholder.com/600x600.png?text=Your+Logo+or+Hero" alt="Hero image" loading="lazy">
+      </div>
+    </section>
 
+    <section id="services" class="services" style="margin-top:8px">
+      <div class="card reveal">
+        <h3>Custom Websites</h3>
+        <p>Responsive landing pages, company sites, and e-commerce stores built to convert.</p>
+      </div>
+      <div class="card reveal">
+        <h3>Web Software</h3>
+        <p>Web apps, dashboards and small automations — fast, tested and maintainable.</p>
+      </div>
+      <div class="card reveal">
+        <h3>Business Cards</h3>
+        <p>Print-ready card designs with layered source files for easy edits.</p>
+      </div>
+      <div class="card reveal">
+        <h3>Graphics & Branding</h3>
+        <p>Logos, banners, social assets and consistent brand visual language.</p>
+      </div>
+    </section>
 
-<h3 style="margin-top:26px">Portfolio</h3>
-<section class="portfolio">
-<a class="thumb" href="#" target="_blank"><img src="https://via.placeholder.com/600x400.png?text=Project+1" alt="Project 1"><div style="padding:8px">Project 1 — Website</div></a>
-<a class="thumb" href="#" target="_blank"><img src="https://via.placeholder.com/600x400.png?text=Project+2" alt="Project 2"><div style="padding:8px">Project 2 — Business Card</div></a>
-<a class="thumb" href="#" target="_blank"><img src="https://via.placeholder.com/600x400.png?text=Project+3" alt="Project 3"><div style="padding:8px">Project 3 — App</div></a>
-</section>
+    <h2 id="portfolio" style="margin-top:28px" class="reveal">Portfolio</h2>
+    <section class="portfolio">
+      <!-- Replace these images with files you upload into images/ folder -->
+      <a class="item reveal" href="#" target="_blank">
+        <img src="https://via.placeholder.com/800x600.png?text=Project+1" alt="Project 1" loading="lazy">
+        <div class="meta"><strong>Project 1</strong><div style="color:var(--muted);font-size:13px">Website • Landing page</div></div>
+      </a>
+      <a class="item reveal" href="#" target="_blank">
+        <img src="https://via.placeholder.com/800x600.png?text=Project+2" alt="Project 2" loading="lazy">
+        <div class="meta"><strong>Project 2</strong><div style="color:var(--muted);font-size:13px">Business Card</div></div>
+      </a>
+      <a class="item reveal" href="#" target="_blank">
+        <img src="https://via.placeholder.com/800x600.png?text=Project+3" alt="Project 3" loading="lazy">
+        <div class="meta"><strong>Project 3</strong><div style="color:var(--muted);font-size:13px">Web app</div></div>
+      </a>
+    </section>
 
+    <footer id="contact" class="reveal">
+      <div style="display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:center">
+        <div>
+          <div style="font-weight:700">Want a project like this?</div>
+          <div style="color:var(--muted)">Message me on Fiverr or email me — I'll reply fast.</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-weight:700">Contact</div>
+          <div style="color:var(--muted)"><a href="mailto:YOUR_EMAIL">YOUR_EMAIL</a></div>
+          <div style="margin-top:8px"><a class="btn" href="FIVERR_LINK" target="_blank">Hire on Fiverr</a></div>
+        </div>
+      </div>
+      <div style="margin-top:14px;color:var(--muted);font-size:13px">Made with ♥ — Edit this file to add your projects and contact details.</div>
+    </footer>
+  </div>
 
-<footer>
-<p>If you want a custom site or design, <a href="FIVERR_LINK" target="_blank">message me on Fiverr</a> or email <a href="mailto:YOUR_EMAIL">YOUR_EMAIL</a>.</p>
-<p style="font-size:13px;margin-top:6px;color:#999">Made with ❤️ — Edit this file to add your projects and contact details.</p>
-</footer>
-</div>
+  <script>
+    // Reveal on scroll using IntersectionObserver
+    document.addEventListener('DOMContentLoaded', function () {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('in-view');
+            // optional: unobserve for performance
+            obs.unobserve(e.target);
+          }
+        });
+      }, {threshold: 0.15});
+
+      document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+      // Smooth internal link scrolling
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', (ev) => {
+          const target = document.querySelector(a.getAttribute('href'));
+          if (target) {
+            ev.preventDefault();
+            target.scrollIntoView({behavior: 'smooth', block: 'start'});
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
+
