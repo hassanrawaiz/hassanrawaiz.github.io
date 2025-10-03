@@ -1,196 +1,369 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Hassan Rawaiz — Web Development & Design</title>
-  <meta name="description" content="Websites, software, business cards & design" />
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --accent:#0b74de;
-      --bg:#fbfdff;
-      --muted:#6b7280;
-      --card:#ffffff;
-      --maxw:1100px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial; margin:0; color:#0f172a; background:var(--bg); -webkit-font-smoothing:antialiased}
-    .container{max-width:var(--maxw); margin:36px auto; padding:20px}
-    header{display:flex;align-items:center;justify-content:space-between; gap:16px}
-    .brand{display:flex;gap:12px;align-items:center}
-    .brand .logo{width:46px;height:46px;border-radius:10px; background:linear-gradient(135deg,var(--accent),#06b6d4); color:white;display:flex;align-items:center;justify-content:center;font-weight:700}
-    nav a{margin-left:12px;color:var(--muted);text-decoration:none;font-weight:600}
-    .hero{display:flex;gap:28px;align-items:center;margin-top:20px}
-    .hero .left{flex:1}
-    .kicker{display:inline-block;background:rgba(11,116,222,0.12);color:var(--accent);padding:6px 10px;border-radius:999px;font-weight:600;font-size:13px}
-    h1{font-size:30px;margin:12px 0 8px 0;line-height:1.05}
-    p.lead{margin:0;color:#334155}
-    .cta-group{margin-top:18px}
-    .btn{display:inline-block;padding:10px 16px;border-radius:10px;background:var(--accent);color:white;text-decoration:none;font-weight:700;margin-right:8px;transition:transform .18s ease}
-    .btn-secondary{display:inline-block;padding:10px 14px;border-radius:10px;background:transparent;border:1px solid #e6eefc;color:var(--accent);text-decoration:none;font-weight:700}
-    .btn:hover{transform:translateY(-3px)}
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Hassan Rawaiz — Web Development & Design</title>
+<meta name="description" content="Websites, software, business cards & design" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-    /* Hero Image Fix */
-    .hero-image {
-      width:300px;
-      height:auto;   /* let image control height */
-      border-radius:14px;
-      overflow:hidden;
-      flex-shrink:0;
-      background:#fff;
-      box-shadow:0 8px 30px rgba(12,14,24,0.08);
-    }
-    .hero-image img {
-      width:100%;
-      height:auto;
-      object-fit:contain; /* full image visible, no cropping */
-      display:block;
-      border-radius:15px;
-    }
+<!--
+  Quick customizations:
+  - Replace FIVERR_LINK with your Fiverr URL.
+  - Replace YOUR_EMAIL with your email.
+  - Upload images to /images/:
+      images/hero.jpg
+      images/project1-1.jpg (used on project1.html)
+      images/project2.jpg
+      images/project3-1.jpg project3-2.jpg project3-3.jpg (for project3.html)
+  - If images are missing, the layout uses safe placeholders.
+-->
 
-    /* Services */
-    .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:28px}
-    .card{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 6px 18px rgba(12,14,24,0.04);border:1px solid rgba(15,23,42,0.03);transition:transform .18s ease, box-shadow .18s ease}
-    .card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(12,14,24,0.06)}
-    .card h3{margin:0 0 8px 0;font-size:16px}
-    .card p{margin:0;color:var(--muted);font-size:14px}
+<style>
+  :root{
+    --bg:#0f1724;             /* deep background */
+    --panel:#0b1220;          /* card background */
+    --muted:#9aa4b2;
+    --glass: rgba(255,255,255,0.06);
+    --accent1: #6ee7b7;       /* mint */
+    --accent2: #60a5fa;       /* sky */
+    --accent3: #a78bfa;       /* purple */
+    --maxw:1100px;
+    --radius:14px;
+  }
 
-    /* Portfolio */
-    .portfolio{margin-top:32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
-    .item{border-radius:10px;overflow:hidden;background:#fff;box-shadow:0 6px 18px rgba(12,14,24,0.04);cursor:pointer;transition:transform .18s ease}
-    .item img{width:100%;height:160px;object-fit:cover;display:block}
-    .item .meta{padding:10px}
-    .item:hover{transform:translateY(-6px)}
+  /* Reset & base */
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    min-height:100%;
+    background: radial-gradient(1200px 600px at 10% 10%,rgba(97,123,255,0.06), transparent 8%),
+                radial-gradient(900px 500px at 90% 90%, rgba(0,230,180,0.03), transparent 12%),
+                var(--bg);
+    color:#e6eef8;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.45;
+  }
 
-    footer{margin-top:36px;padding:18px;border-top:1px solid rgba(15,23,42,0.04);color:var(--muted);font-size:14px;border-radius:8px}
+  .page{
+    max-width:var(--maxw);
+    margin:28px auto;
+    padding:20px;
+  }
 
-    /* Reveal animations */
-    .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.2,.9,.2,1), transform .6s cubic-bezier(.2,.9,.2,1)}
-    .reveal.in-view{opacity:1;transform:none}
+  /* Header */
+  header{
+    display:flex;
+    gap:18px;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .brand{display:flex;gap:12px;align-items:center}
+  .logo{
+    width:52px;height:52px;border-radius:12px;
+    background:linear-gradient(135deg,var(--accent1),var(--accent3));
+    display:flex;align-items:center;justify-content:center;
+    font-weight:800;color:#052025;font-size:18px;box-shadow:0 8px 30px rgba(12,18,30,0.5);
+  }
+  .brand .title{font-weight:700;font-size:16px;color: #e9f2ff}
+  .brand .sub{font-size:12px;color:var(--muted)}
 
-    /* small devices */
-    @media (max-width:800px){
-      .hero{flex-direction:column;align-items:flex-start}
-      .hero-image{width:100%;height:auto}
-      nav{display:none}
-    }
-  </style>
+  nav a{color:var(--muted);text-decoration:none;margin-left:14px;font-weight:600;font-size:14px}
+  nav a:hover{color:var(--accent2)}
+
+  /* Hero - asymmetric split with animated blobs */
+  .hero{
+    display:grid;
+    grid-template-columns: 1fr 360px;
+    gap:26px;
+    align-items:center;
+    margin-top:22px;
+  }
+
+  .hero-left{
+    transform: translateZ(0);
+  }
+
+  .kicker{display:inline-block;padding:6px 12px;border-radius:999px;background:linear-gradient(90deg, rgba(167,139,250,0.12), rgba(96,165,250,0.07)); color:var(--accent3); font-weight:700;font-size:13px}
+
+  h1{
+    margin:12px 0 8px 0;
+    font-size:34px;
+    line-height:1.02;
+    background: linear-gradient(90deg,#fff 0%, #cfe8ff 55%);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    letter-spacing:-0.2px;
+  }
+  p.lead{margin:0;color:var(--muted);max-width:70ch;font-size:15px}
+
+  .cta-row{margin-top:18px;display:flex;gap:12px;align-items:center}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:12px;border:none;background:linear-gradient(90deg,var(--accent2),var(--accent1));color:#001219;font-weight:700;text-decoration:none;box-shadow:0 8px 30px rgba(11,104,246,0.12);transition:transform .22s cubic-bezier(.2,.9,.3,1), box-shadow .22s;}
+  .btn:hover{transform:translateY(-4px);box-shadow:0 18px 50px rgba(11,104,246,0.18)}
+  .btn-outline{padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.06);color:var(--accent1);background:transparent}
+
+  /* hero-right visual area */
+  .visual{
+    position:relative;
+    height:360px;
+    border-radius:var(--radius);
+    overflow:visible;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+  }
+
+  /* decorative animated blobs */
+  .blob{
+    position:absolute;border-radius:50%;
+    filter:blur(36px) saturate(120%);
+    mix-blend-mode:screen;opacity:0.95;
+    transform-origin:center;
+    transition:transform .15s linear;
+  }
+  .blob.b1{width:360px;height:360px;left:-60px;top:-40px;background:linear-gradient(120deg,var(--accent1),var(--accent2))}
+  .blob.b2{width:240px;height:240px;right:-40px;bottom:-40px;background:linear-gradient(90deg,var(--accent3),var(--accent2));opacity:0.9}
+  .frame{
+    width:100%;max-width:320px;border-radius:14px;background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    box-shadow: 0 10px 40px rgba(4,6,12,0.55), inset 0 1px 0 rgba(255,255,255,0.02);
+    padding:10px;backdrop-filter: blur(6px);border:1px solid rgba(255,255,255,0.04);
+  }
+  .frame img{display:block;width:100%;height:auto;border-radius:10px;object-fit:cover}
+
+  /* Services grid - glass cards with subtle hover */
+  .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:28px}
+  .glass{
+    border-radius:12px;padding:18px;background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.03);box-shadow: 0 8px 30px rgba(2,6,15,0.5);
+    transition:transform .22s, box-shadow .22s;
+  }
+  .glass:hover{transform:translateY(-8px) rotateX(2deg); box-shadow:0 26px 60px rgba(6,12,30,0.6)}
+  .glass h3{margin:0 0 8px 0}
+  .glass p{margin:0;color:var(--muted)}
+
+  /* Portfolio - tilt cards + overlay CTA */
+  .portfolio{margin-top:30px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+  .card{
+    position:relative;border-radius:12px;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.03);cursor:pointer;transform:translateZ(0);
+    transition:transform .25s cubic-bezier(.2,.9,.3,1), box-shadow .25s;
+  }
+  .card:hover{transform:translateY(-10px) scale(1.01); box-shadow:0 30px 70px rgba(2,6,20,0.6)}
+  .card img{width:100%;height:160px;object-fit:cover;display:block}
+  .card .meta{padding:12px;background:linear-gradient(0deg,rgba(0,0,0,0.02),transparent)}
+  .card .meta strong{display:block}
+  .card .meta small{color:var(--muted);font-size:13px}
+
+  /* Tilt inner transform for interactive 3D feel */
+  .tilt { transform-style:preserve-3d; will-change:transform; transition:transform .18s linear; }
+  .tilt:after{ content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03)); mix-blend-mode:overlay; }
+
+  /* footer / contact */
+  footer{margin-top:36px;padding:22px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));border:1px solid rgba(255,255,255,0.02)}
+  .contact-row{display:flex;justify-content:space-between;gap:18px;align-items:center;flex-wrap:wrap}
+  .contact-left strong{display:block;font-size:16px}
+  .mail{color:var(--muted);text-decoration:none}
+
+  /* small screens */
+  @media (max-width:900px){
+    .hero{grid-template-columns:1fr;gap:18px}
+    .visual{height:300px}
+    .frame{max-width:100%}
+  }
+
+  /* reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .blob, .card, .glass, .btn, .tilt { transition: none !important; animation: none !important; }
+  }
+</style>
 </head>
 <body>
-  <div class="container">
-    <header class="reveal">
+  <main class="page" id="page">
+    <header>
       <div class="brand">
-        <div class="logo">YR</div>
+        <div class="logo" aria-hidden="true">HR</div>
         <div>
-          <div style="font-weight:700">Hassan Rawaiz</div>
-          <div style="font-size:12px;color:var(--muted)">Websites • Software • Design</div>
+          <div class="title">Hassan Rawaiz</div>
+          <div class="sub">Websites • Software • Design</div>
         </div>
       </div>
-      <nav>
+      <nav aria-label="Main">
         <a href="#services">Services</a>
         <a href="#portfolio">Portfolio</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
 
-    <section class="hero reveal" style="margin-top:8px">
-      <div class="left">
-        <div class="kicker">Full-stack • Designer</div>
-        <h1>I build modern websites and designs that help your business grow</h1>
-        <p class="lead">Simple, fast, and professional work — websites, custom web tools, print-ready business cards and marketing images. I focus on clear design and fast delivery.</p>
-        <div class="cta-group">
-          <a class="btn" href="FIVERR_LINK" target="_blank" rel="noopener">Hire me on Fiverr</a>
-          <a class="btn-secondary" href="#contact">Contact</a>
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-left">
+        <span class="kicker">Full-stack • Designer</span>
+        <h1 id="hero-title">I design & build modern digital products that get results</h1>
+        <p class="lead">Websites, offline software (hotels, libraries, schools), business cards and brand graphics — built fast with clean code and human-centered design.</p>
+
+        <div class="cta-row">
+          <a class="btn" href="FIVERR_LINK" target="_blank" rel="noopener">Hire on Fiverr</a>
+          <a class="btn btn-outline" href="#contact">Contact</a>
         </div>
       </div>
-      <div class="hero-image">
-        <!-- Your uploaded image (make sure it's in images/hero.jpg) -->
-        <img src="images/hero.jpg" alt="My Photo">
+
+      <div class="visual" aria-hidden="true">
+        <div class="blob b1" id="blob1"></div>
+        <div class="blob b2" id="blob2"></div>
+        <div class="frame" id="heroFrame">
+          <img src="images/hero.jpg" alt="Hassan Rawaiz portrait or logo" onerror="this.src='https://via.placeholder.com/600x600?text=Your+Image'">
+        </div>
       </div>
     </section>
 
-    <section id="services" class="services" style="margin-top:8px">
-      <div class="card reveal">
+    <!-- SERVICES -->
+    <section id="services" class="services" aria-label="Services">
+      <div class="glass reveal">
         <h3>Custom Websites</h3>
-        <p>Responsive landing pages, company sites, and e-commerce stores built to convert.</p>
+        <p>Responsive landing pages, company sites and e-commerce that convert visitors into customers.</p>
       </div>
-      <div class="card reveal">
-        <h3>Web Software</h3>
-        <p>Offline Software, dashboards and small automations — fast, tested and maintainable.</p>
+      <div class="glass reveal">
+        <h3>Web & Offline Software</h3>
+        <p>Desktop & web apps: hotel systems, library management, school admin tools and business automation.</p>
       </div>
-      <div class="card reveal">
+      <div class="glass reveal">
         <h3>Business Cards</h3>
-        <p>Print-ready card designs with layered source files for easy edits.</p>
+        <p>Print-ready, layered files with high-resolution final assets for printing.</p>
       </div>
-      <div class="card reveal">
-        <h3>Graphics & Branding</h3>
-        <p>Logos, banners, social assets and consistent brand visual language.</p>
+      <div class="glass reveal">
+        <h3>Branding & Graphics</h3>
+        <p>Logos, banners and social assets with a consistent visual language for your brand.</p>
       </div>
     </section>
 
-    <h2 id="portfolio" style="margin-top:28px" class="reveal">Portfolio</h2>
-    <section class="portfolio">
-      <a class="item reveal" href="project1.html">
-         <img src="images/project1-1.jpg" alt="Project 1" loading="lazy">
-         <div class="meta"><strong>Project 1</strong><div style="color:var(--muted);font-size:13px">Website • Full preview</div></div>
+    <!-- PORTFOLIO -->
+    <h2 id="portfolio" class="reveal" style="margin-top:28px">Portfolio</h2>
+    <section class="portfolio" aria-label="Portfolio">
+      <a class="card tilt reveal" href="project1.html" aria-label="Open Project 1 detail">
+        <div class="tilt-inner">
+          <img src="images/project1-1.jpg" alt="Project 1 preview" onerror="this.src='https://via.placeholder.com/800x600?text=Project+1'">
+          <div class="meta">
+            <strong>Project 1</strong>
+            <small>Website • Full preview</small>
+          </div>
+        </div>
       </a>
 
-      <a class="item reveal" href="#" target="_blank">
-        <img src="images/project2.jpg" alt="Project 2" loading="lazy">
-        <div class="meta"><strong>Project 2</strong><div style="color:var(--muted);font-size:13px">Business Card</div></div>
+      <a class="card tilt reveal" href="#" target="_blank" aria-label="Project 2">
+        <div class="tilt-inner">
+          <img src="images/project2.jpg" alt="Project 2 preview" onerror="this.src='https://via.placeholder.com/800x600?text=Project+2'">
+          <div class="meta">
+            <strong>Project 2</strong>
+            <small>Business Card</small>
+          </div>
+        </div>
       </a>
-      <a class="item reveal" href="project3.html">
-        <img src="images/project3-1.jpg" alt="Project 3 - Offline Software" loading="lazy">
-        <div class="meta"><strong>Project 3</strong><div style="color:var(--muted);font-size:13px">Offline Software • Hotels, Library, Schools</div></div>
+
+      <a class="card tilt reveal" href="project3.html" aria-label="Open Project 3 detail">
+        <div class="tilt-inner">
+          <img src="images/project3-1.jpg" alt="Project 3 preview" onerror="this.src='https://via.placeholder.com/800x600?text=Project+3'">
+          <div class="meta">
+            <strong>Project 3</strong>
+            <small>Offline Software • Hotels, Library, Schools</small>
+          </div>
+        </div>
       </a>
     </section>
 
-    <footer id="contact" class="reveal">
-      <div style="display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:center">
-        <div>
-          <div style="font-weight:700">Want a project like this?</div>
-          <div style="color:var(--muted)">Message me on Fiverr or email me — I'll reply fast.</div>
+    <!-- CONTACT / FOOTER -->
+    <footer id="contact" class="reveal" aria-labelledby="contact-heading">
+      <div class="contact-row">
+        <div class="contact-left">
+          <strong>Want a project like this?</strong>
+          <div style="color:var(--muted);margin-top:6px">Message me on Fiverr or email me — I reply fast.</div>
         </div>
         <div style="text-align:right">
           <div style="font-weight:700">Contact</div>
-          <div style="color:var(--muted)"><a href="mailto:YOUR_EMAIL">hassanrawaiz123@gmail.com</a></div>
-          <div style="margin-top:8px"><a class="btn" href="FIVERR_LINK" target="_blank">Hire on Fiverr</a></div>
+          <a class="mail" href="mailto:hassanrawaiz123@gmail.com">hassanrawaiz123@gmail.com</a>
+          <div style="margin-top:12px"><a class="btn" href="FIVERR_LINK" target="_blank">Hire on Fiverr</a></div>
         </div>
       </div>
-      <div style="margin-top:14px;color:var(--muted);font-size:13px">Made by Hassan Rawaiz — Please contact through email.</div>
+      <div style="margin-top:14px;color:var(--muted);font-size:13px">Made by Hassan Rawaiz — Clean code & fast delivery.</div>
     </footer>
-  </div>
+  </main>
 
-  <script>
-    // Reveal on scroll
-    document.addEventListener('DOMContentLoaded', function () {
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('in-view');
-            obs.unobserve(e.target);
-          }
-        });
-      }, {threshold: 0.15});
+<script>
+/* ---------------------------
+  Interactive behaviors below
+   - blob parallax on mouse (subtle)
+   - tilt effect on portfolio .tilt
+   - reveal animations via IntersectionObserver
+   - respects prefers-reduced-motion
+----------------------------*/
 
-      document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+// Utility
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      // Smooth scroll
-      document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', (ev) => {
-          const target = document.querySelector(a.getAttribute('href'));
-          if (target) {
-            ev.preventDefault();
-            target.scrollIntoView({behavior: 'smooth', block: 'start'});
-          }
-        });
-      });
+/* Blob parallax */
+(function blobParallax(){
+  if(reduceMotion) return;
+  const blob1 = document.getElementById('blob1');
+  const blob2 = document.getElementById('blob2');
+  const hero = document.querySelector('.visual');
+  if(!blob1 || !blob2 || !hero) return;
+
+  hero.addEventListener('mousemove', (e)=>{
+    const r = hero.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top)  / r.height - 0.5;
+    blob1.style.transform = `translate(${x * -18}px, ${y * -12}px) scale(1.02)`;
+    blob2.style.transform = `translate(${x * 22}px, ${y * 10}px) scale(1.03)`;
+  });
+  hero.addEventListener('mouseleave', ()=>{ blob1.style.transform=''; blob2.style.transform=''; });
+})();
+
+/* Tilt effect for cards */
+(function tiltCards(){
+  if(reduceMotion) return;
+  document.querySelectorAll('.tilt').forEach(card=>{
+    card.addEventListener('mousemove', (e)=>{
+      const rect = card.getBoundingClientRect();
+      const px = (e.clientX - rect.left) / rect.width;
+      const py = (e.clientY - rect.top) / rect.height;
+      const rx = (py - 0.5) * 10; // rotate x
+      const ry = (px - 0.5) * -10; // rotate y
+      card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`;
     });
-  </script>
+    card.addEventListener('mouseleave', ()=>{ card.style.transform=''; });
+  });
+})();
+
+/* Reveal on scroll */
+(function reveal(){
+  const observer = new IntersectionObserver((entries, obs)=>{
+    entries.forEach(ent=>{
+      if(ent.isIntersecting){
+        ent.target.classList.add('in-view');
+        obs.unobserve(ent.target);
+      }
+    });
+  }, {threshold: 0.12});
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+})();
+
+/* Safe keyboard focus for cards */
+document.querySelectorAll('.card').forEach(c=>{
+  c.setAttribute('tabindex','0');
+  c.addEventListener('keydown', (e)=>{
+    if(e.key === 'Enter' || e.key === ' ') {
+      const link = c.querySelector('a') || c.closest('a');
+      if(link && link.href) window.location = link.href;
+    }
+  });
+});
+</script>
 </body>
 </html>
+
 
 
