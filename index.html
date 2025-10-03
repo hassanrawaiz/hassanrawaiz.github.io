@@ -46,11 +46,10 @@
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
       line-height:1.5;
+      -webkit-font-feature-settings: "kern";
     }
 
     .page{max-width:var(--maxw);margin:28px auto;padding:28px}
-
-    /* header */
     header{display:flex;align-items:center;justify-content:space-between;gap:18px}
     .brand{display:flex;gap:12px;align-items:center}
     .logo{
@@ -65,7 +64,6 @@
     nav a{margin-left:14px;color:var(--muted);text-decoration:none;font-weight:600}
     nav a:hover{color:var(--accent-b)}
 
-    /* hero layout */
     .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin-top:22px}
     .hero-left{padding:18px}
     .kicker{display:inline-block;padding:6px 12px;border-radius:999px;background:linear-gradient(90deg, rgba(167,139,250,0.12), rgba(96,165,250,0.07)); color:var(--accent-c); font-weight:700;font-size:13px}
@@ -89,17 +87,19 @@
     .frame{
       width:100%;max-width:380px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
       border:1px solid rgba(255,255,255,0.04);padding:10px;backdrop-filter:blur(6px);
-      box-shadow: 0 18px 60px rgba(2,6,20,0.6);
+      transform-style:preserve-3d;transition:transform .18s ease, box-shadow .18s ease;box-shadow: 0 18px 60px rgba(2,6,20,0.6);
     }
     .frame img{width:100%;height:auto;border-radius:12px;display:block;object-fit:cover}
 
-    /* stats */
+    @keyframes floatY { 0%{transform:translateY(0)} 50%{transform:translateY(-10px)} 100%{transform:translateY(0)} }
+    @keyframes slowRotate{ 0%{transform:rotate(-1deg)} 50%{transform:rotate(1deg)} 100%{transform:rotate(-1deg)} }
+    .frame.animate { animation: floatY 4.8s ease-in-out infinite, slowRotate 10s linear infinite; }
+
     .stats{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
     .stat{background:var(--panel);padding:12px 16px;border-radius:12px;border:1px solid var(--glass);min-width:150px}
     .stat strong{display:block;font-size:20px}
     .stat small{color:var(--muted)}
 
-    /* services */
     .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:28px}
     .glass{
       border-radius:12px;padding:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
@@ -108,7 +108,6 @@
     .glass h3{margin:0 0 8px 0}
     .glass p{margin:0;color:var(--muted);padding-right:6px}
 
-    /* portfolio */
     .portfolio{margin-top:28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
     .card{
       position:relative;border-radius:12px;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
@@ -118,9 +117,11 @@
     .card img{width:100%;height:180px;object-fit:cover;display:block}
     .card .meta{padding:14px 16px 18px;background:linear-gradient(0deg, rgba(0,0,0,0.03), transparent)}
     .card .meta strong{display:block}
-    .card .meta .desc{font-size:13px;color:var(--muted);margin-top:6px;display:block}
+    .card .meta .desc{font-size:13px;color:var(--muted);margin-top:6px;display:block;transform:translateY(10px);opacity:0;transition:transform .6s cubic-bezier(.2,.9,.2,1),opacity .6s}
+    .card.in-view .meta .desc{transform:translateY(-6px);opacity:1}
 
-    /* footer */
+    .tilt{transform-style:preserve-3d;will-change:transform;transition:transform .12s linear}
+
     footer{margin-top:36px;padding:22px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));border:1px solid rgba(255,255,255,0.02)}
     .contact-row{display:flex;justify-content:space-between;gap:18px;align-items:center;flex-wrap:wrap}
     .contact-left strong{display:block;font-size:16px}
@@ -130,6 +131,11 @@
       .hero{grid-template-columns:1fr;gap:18px}
       .visual{height:320px}
       .frame{max-width:100%}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .frame.animate { animation: none !important; transform:none !important }
+      .card, .glass, .btn, .tilt, .blob { transition:none !important; animation:none !important; }
     }
   </style>
 </head>
@@ -153,42 +159,42 @@
     </header>
 
     <!-- HERO -->
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-left container-pad" data-aos="fade-right">
-        <span class="kicker">Full-stack • Designer</span>
-        <h1 id="hero-title">I design & build modern products that get real results</h1>
-        <p class="lead">Websites, offline systems (hotels, libraries, schools), business cards and branding — clean code, thoughtful design and fast delivery. I focus on clarity, speed and conversion.</p>
+    <section class="hero" aria-labelledby="hero-title" data-aos="fade-up">
+      <div class="hero-left container-pad">
+        <span class="kicker" data-aos="fade-right">Full-stack • Designer</span>
+        <h1 id="hero-title" data-aos="fade-up">I design & build modern products that get real results</h1>
+        <p class="lead" data-aos="fade-left">Websites, offline systems (hotels, libraries, schools), business cards and branding — clean code, thoughtful design and fast delivery. I focus on clarity, speed and conversion.</p>
 
         <div class="cta-row" data-aos="fade-up">
           <a class="btn" href="FIVERR_LINK" target="_blank" rel="noopener">Hire on Fiverr</a>
           <a class="btn btn-outline" href="#contact">Contact</a>
         </div>
 
-        <div class="stats" aria-hidden="true" data-aos="fade-up">
+        <div class="stats" aria-hidden="true" data-aos="zoom-in">
           <div class="stat">
-            <strong>4+</strong>
+            <strong id="counter-years">0</strong>
             <small>Years Experience</small>
           </div>
           <div class="stat">
-            <strong>70+</strong>
+            <strong id="counter-projects">0</strong>
             <small>Projects Delivered</small>
           </div>
           <div class="stat">
-            <strong>98%</strong>
+            <strong id="counter-sat">0%</strong>
             <small>Client Satisfaction</small>
           </div>
         </div>
       </div>
 
       <div class="visual" aria-hidden="true" data-aos="zoom-in">
-        <div class="frame">
+        <div class="frame animate" id="heroFrame">
           <img src="images/hero.jpg" alt="Hassan Rawaiz portrait or logo" onerror="this.src='https://via.placeholder.com/600x600?text=Your+Image'">
         </div>
       </div>
     </section>
 
     <!-- SERVICES -->
-    <section id="services" class="services" aria-label="Services">
+    <section id="services" class="services" aria-label="Services" data-aos="fade-up">
       <div class="glass" data-aos="fade-up">
         <h3>Custom Websites</h3>
         <p>Responsive landing pages, company sites and e-commerce optimized for conversion.</p>
@@ -208,9 +214,9 @@
     </section>
 
     <!-- PORTFOLIO -->
-    <h2 id="portfolio" style="margin-top:28px" data-aos="fade-right">Portfolio</h2>
+    <h2 id="portfolio" style="margin-top:28px" data-aos="fade-down">Portfolio</h2>
     <section class="portfolio" aria-label="Portfolio">
-      <a class="card" href="project1.html" data-aos="fade-up">
+      <a class="card tilt reveal-up" href="project1.html" data-aos="zoom-in">
         <img src="images/project1-1.jpg" alt="Project 1 preview" onerror="this.src='https://via.placeholder.com/800x600?text=Project+1'">
         <div class="meta">
           <strong>Project 1</strong>
@@ -218,7 +224,7 @@
         </div>
       </a>
 
-      <a class="card" href="#" target="_blank" data-aos="fade-up" data-aos-delay="100">
+      <a class="card tilt reveal-up" href="#" target="_blank" data-aos="zoom-in" data-aos-delay="100">
         <img src="images/project2.jpg" alt="Project 2 preview" onerror="this.src='https://via.placeholder.com/800x600?text=Project+2'">
         <div class="meta">
           <strong>Project 2</strong>
@@ -226,7 +232,7 @@
         </div>
       </a>
 
-      <a class="card" href="project3.html" data-aos="fade-up" data-aos-delay="200">
+      <a class="card tilt reveal-up" href="project3.html" data-aos="zoom-in" data-aos-delay="200">
         <img src="images/project3-1.jpg" alt="Project 3 preview" onerror="this.src='https://via.placeholder.com/800x600?text=Project+3'">
         <div class="meta">
           <strong>Project 3</strong>
@@ -235,8 +241,8 @@
       </a>
     </section>
 
-    <!-- FOOTER / CONTACT -->
-    <footer id="contact" aria-labelledby="contact-heading" data-aos="fade-up">
+    <!-- FOOTER -->
+    <footer id="contact" style="margin-top:36px" aria-labelledby="contact-heading" data-aos="fade-up">
       <div class="contact-row">
         <div class="contact-left">
           <strong>Want a project like this?</strong>
@@ -253,6 +259,7 @@
   </main>
 </body>
 </html>
+
 
 
 
