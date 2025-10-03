@@ -4,49 +4,261 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Project 3 — Offline Software Creator</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta name="description" content="Project 3 detail page" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      AOS.init({ duration: 1000, once: true });
+    });
+  </script>
+
   <style>
-    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial;margin:0;background:#fbfdff;color:#0f172a}
-    .container{max-width:1100px;margin:36px auto;padding:20px}
-    h1{font-size:28px;margin-bottom:10px}
-    p{color:#334155}
-    a.back{display:inline-block;margin-bottom:20px;text-decoration:none;color:#0b74de;font-weight:600}
-    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:20px}
-    .thumb{border-radius:10px;overflow:hidden;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,0.05);cursor:pointer}
-    .thumb img{width:100%;height:180px;object-fit:cover;display:block}
-    .caption{padding:8px;font-size:14px;color:#6b7280}
-    /* Lightbox */
-    .lightbox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);display:none;align-items:center;justify-content:center;z-index:1000}
-    .lightbox img{max-width:90%;max-height:90%;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,0.4)}
-    .lightbox.active{display:flex}
+    :root {
+      --accent:#0b74de;
+      --bg:#0d1117;
+      --card:#111827;
+      --muted:#9ca3af;
+      --maxw:1100px;
+    }
+    *{box-sizing:border-box}
+    body {
+      font-family: Inter, sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: #f9fafb;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Header (same as index.html & project1.html) */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 20px;
+      background: #0b74de;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .brand {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .brand .logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 10px;
+      background: linear-gradient(135deg,var(--accent),#06b6d4);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+    .brand div {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+    nav a {
+      margin-left: 16px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .wrap {
+      max-width: var(--maxw);
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 12px;
+      color: var(--accent);
+    }
+    p.lead {
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    /* Back button */
+    .back {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 10px 16px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent), #06b6d4);
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: transform 0.2s ease;
+    }
+    .back:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .thumb {
+      background: var(--card);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .thumb:hover { transform: translateY(-4px); }
+    .thumb img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+    .caption {
+      padding: 10px;
+      font-size: 14px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* Lightbox modal */
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(10,12,18,0.85);
+      z-index: 1000;
+    }
+    .modal.open { display: flex; }
+    .modal img {
+      max-width: 90%;
+      max-height: 85%;
+      border-radius: 10px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+    }
+    .modal .close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+      background: rgba(0,0,0,0.4);
+      border: none;
+      border-radius: 50%;
+      padding: 6px 12px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 18px;
+      margin-top: 40px;
+      font-size: 14px;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    @media(max-width:700px){
+      h1{font-size:24px}
+      .thumb img{height:150px}
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <a href="index.html" class="back">← Back to Portfolio</a>
-    <h1>Project 3 — Offline Software Creator</h1>
-    <p>This project demonstrates desktop/offline software solutions tailored for hotels, libraries, schools, and other organizations. Here are some screenshots:</p>
+  <!-- Header -->
+  <header data-aos="fade-down">
+    <div class="brand">
+      <div class="logo">YR</div>
+      <div>
+        <div style="font-weight:700">Hassan Rawaiz</div>
+        <div style="font-size:12px;color:#d1d5db">Websites • Software • Design</div>
+      </div>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="index.html#portfolio">Portfolio</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="wrap">
+    <section class="hero" data-aos="fade-up">
+      <a href="index.html#portfolio" class="back" data-aos="zoom-in">← Back to Portfolio</a>
+      <h1 data-aos="fade-right">Project 3 — Offline Software Creator</h1>
+      <p class="lead" data-aos="fade-left">
+        This project demonstrates desktop/offline software solutions tailored for 
+        <strong>hotels, libraries, schools, and other organizations</strong>.  
+        Below are some example screenshots:
+      </p>
+    </section>
 
     <section class="gallery" id="gallery">
-      <div class="thumb"><img src="images/project3-1.jpg" alt="Project 3 - Hotels Software" data-full="images/project3-1.jpg"><div class="caption">Hotels Software login page</div></div>
-      <div class="thumb"><img src="images/project3-2.jpg" alt="Project 3 - Library Software" data-full="images/project3-2.jpg"><div class="caption">Hotel software Homepage</div></div>
-      <!-- Add more images as needed -->
+      <div class="thumb" data-aos="zoom-in">
+        <img src="images/project3-1.jpg" alt="Hotels Software" data-full="images/project3-1.jpg">
+        <div class="caption">Hotels Software Login Page</div>
+      </div>
+      <div class="thumb" data-aos="zoom-in">
+        <img src="images/project3-2.jpg" alt="Library Software" data-full="images/project3-2.jpg">
+        <div class="caption">Hotel Software Homepage</div>
+      </div>
     </section>
   </div>
 
-  <div class="lightbox" id="lightbox"><img src="" alt=""></div>
+  <footer data-aos="fade-up">
+    © 2025 Hassan Rawaiz — All Rights Reserved
+  </footer>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="modal" role="dialog" aria-hidden="true">
+    <button class="close" id="closeBtn" aria-label="Close">✕</button>
+    <img id="lightboxImage" src="" alt="Preview">
+  </div>
 
   <script>
-    // Lightbox functionality
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = lightbox.querySelector('img');
-    document.querySelectorAll('#gallery img').forEach(img => {
+    // open image in modal
+    document.querySelectorAll('.thumb img').forEach(img => {
       img.addEventListener('click', () => {
-        lightboxImg.src = img.dataset.full;
-        lightbox.classList.add('active');
+        const url = img.getAttribute('data-full') || img.src;
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightboxImage');
+        lbImg.src = url;
+        lb.classList.add('open');
+        lb.setAttribute('aria-hidden','false');
       });
     });
-    lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
+    // close
+    document.getElementById('closeBtn').addEventListener('click', () => {
+      const lb = document.getElementById('lightbox');
+      lb.classList.remove('open');
+      lb.setAttribute('aria-hidden','true');
+      document.getElementById('lightboxImage').src = '';
+    });
+    document.getElementById('lightbox').addEventListener('click', (e)=>{
+      if(e.target.id === 'lightbox') {
+        document.getElementById('closeBtn').click();
+      }
+    });
+    // ESC to close
+    document.addEventListener('keydown', e => { if(e.key === 'Escape') document.getElementById('closeBtn').click(); });
   </script>
 </body>
 </html>
+
