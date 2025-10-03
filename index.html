@@ -6,6 +6,19 @@
   <title>Hassan Rawaiz — Web Development & Design</title>
   <meta name="description" content="Websites, software, business cards & design" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      AOS.init({
+        duration: 1000,
+        once: true
+      });
+    });
+  </script>
+
   <style>
     :root{
       --bg:#0e1420;
@@ -33,7 +46,6 @@
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
       line-height:1.5;
-      -webkit-font-feature-settings: "kern";
     }
 
     .page{max-width:var(--maxw);margin:28px auto;padding:28px}
@@ -73,20 +85,13 @@
     .btn:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(10,90,220,0.13)}
     .btn-outline{padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);color:var(--accent-a);background:transparent}
 
-    /* hero visual: enhanced animation */
     .visual{position:relative;height:420px;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;padding:20px}
     .frame{
       width:100%;max-width:380px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
       border:1px solid rgba(255,255,255,0.04);padding:10px;backdrop-filter:blur(6px);
-      transform-style:preserve-3d;transition:transform .18s ease, box-shadow .18s ease;box-shadow: 0 18px 60px rgba(2,6,20,0.6);
+      box-shadow: 0 18px 60px rgba(2,6,20,0.6);
     }
     .frame img{width:100%;height:auto;border-radius:12px;display:block;object-fit:cover}
-
-    /* float animation */
-    @keyframes floatY { 0%{transform:translateY(0)} 50%{transform:translateY(-10px)} 100%{transform:translateY(0)} }
-    @keyframes slowRotate{ 0%{transform:rotate(-1deg)} 50%{transform:rotate(1deg)} 100%{transform:rotate(-1deg)} }
-
-    .frame.animate { animation: floatY 4.8s ease-in-out infinite, slowRotate 10s linear infinite; }
 
     /* stats */
     .stats{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
@@ -103,7 +108,7 @@
     .glass h3{margin:0 0 8px 0}
     .glass p{margin:0;color:var(--muted);padding-right:6px}
 
-    /* portfolio: improved spacing & upward caption animation */
+    /* portfolio */
     .portfolio{margin-top:28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
     .card{
       position:relative;border-radius:12px;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
@@ -113,12 +118,7 @@
     .card img{width:100%;height:180px;object-fit:cover;display:block}
     .card .meta{padding:14px 16px 18px;background:linear-gradient(0deg, rgba(0,0,0,0.03), transparent)}
     .card .meta strong{display:block}
-    .card .meta .desc{font-size:13px;color:var(--muted);margin-top:6px;display:block;transform:translateY(10px);opacity:0;transition:transform .6s cubic-bezier(.2,.9,.2,1),opacity .6s}
-    /* when in view - caption moves up and stays */
-    .card.in-view .meta .desc{transform:translateY(-6px);opacity:1}
-
-    /* tilt (lighter) */
-    .tilt{transform-style:preserve-3d;will-change:transform;transition:transform .12s linear}
+    .card .meta .desc{font-size:13px;color:var(--muted);margin-top:6px;display:block}
 
     /* footer */
     footer{margin-top:36px;padding:22px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));border:1px solid rgba(255,255,255,0.02)}
@@ -126,27 +126,16 @@
     .contact-left strong{display:block;font-size:16px}
     .mail{color:var(--muted);text-decoration:none}
 
-    /* spacing tweaks for readability */
-    .container-pad{padding:20px}
-    .lead, .glass p, .meta { padding:6px 0; }
-
-    /* responsive */
     @media (max-width:980px){
       .hero{grid-template-columns:1fr;gap:18px}
       .visual{height:320px}
       .frame{max-width:100%}
     }
-
-    /* reduced motion */
-    @media (prefers-reduced-motion: reduce){
-      .frame.animate { animation: none !important; transform:none !important }
-      .card, .glass, .btn, .tilt, .blob { transition:none !important; animation:none !important; }
-    }
   </style>
 </head>
 <body>
   <main class="page">
-    <header>
+    <header data-aos="fade-down">
       <div class="brand">
         <div class="logo" aria-hidden="true">HR</div>
         <div>
@@ -165,34 +154,34 @@
 
     <!-- HERO -->
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-left container-pad">
+      <div class="hero-left container-pad" data-aos="fade-right">
         <span class="kicker">Full-stack • Designer</span>
         <h1 id="hero-title">I design & build modern products that get real results</h1>
         <p class="lead">Websites, offline systems (hotels, libraries, schools), business cards and branding — clean code, thoughtful design and fast delivery. I focus on clarity, speed and conversion.</p>
 
-        <div class="cta-row">
+        <div class="cta-row" data-aos="fade-up">
           <a class="btn" href="FIVERR_LINK" target="_blank" rel="noopener">Hire on Fiverr</a>
           <a class="btn btn-outline" href="#contact">Contact</a>
         </div>
 
-        <div class="stats" aria-hidden="true">
+        <div class="stats" aria-hidden="true" data-aos="fade-up">
           <div class="stat">
-            <strong id="counter-years">0</strong>
+            <strong>4+</strong>
             <small>Years Experience</small>
           </div>
           <div class="stat">
-            <strong id="counter-projects">0</strong>
+            <strong>70+</strong>
             <small>Projects Delivered</small>
           </div>
           <div class="stat">
-            <strong id="counter-sat">0%</strong>
+            <strong>98%</strong>
             <small>Client Satisfaction</small>
           </div>
         </div>
       </div>
 
-      <div class="visual" aria-hidden="true">
-        <div class="frame animate" id="heroFrame">
+      <div class="visual" aria-hidden="true" data-aos="zoom-in">
+        <div class="frame">
           <img src="images/hero.jpg" alt="Hassan Rawaiz portrait or logo" onerror="this.src='https://via.placeholder.com/600x600?text=Your+Image'">
         </div>
       </div>
@@ -200,28 +189,28 @@
 
     <!-- SERVICES -->
     <section id="services" class="services" aria-label="Services">
-      <div class="glass reveal">
+      <div class="glass" data-aos="fade-up">
         <h3>Custom Websites</h3>
         <p>Responsive landing pages, company sites and e-commerce optimized for conversion.</p>
       </div>
-      <div class="glass reveal">
+      <div class="glass" data-aos="fade-up" data-aos-delay="100">
         <h3>Web & Offline Software</h3>
         <p>Desktop & web apps: hotel systems, library management, school admin tools and business automation.</p>
       </div>
-      <div class="glass reveal">
+      <div class="glass" data-aos="fade-up" data-aos-delay="200">
         <h3>Business Cards</h3>
         <p>Print-ready layered files and final exports for professional printing.</p>
       </div>
-      <div class="glass reveal">
+      <div class="glass" data-aos="fade-up" data-aos-delay="300">
         <h3>Branding & Graphics</h3>
         <p>Logos, banners and social assets that keep visual language consistent and strong.</p>
       </div>
     </section>
 
     <!-- PORTFOLIO -->
-    <h2 id="portfolio" style="margin-top:28px">Portfolio</h2>
+    <h2 id="portfolio" style="margin-top:28px" data-aos="fade-right">Portfolio</h2>
     <section class="portfolio" aria-label="Portfolio">
-      <a class="card tilt reveal-up" href="project1.html" aria-label="Open Project 1 detail">
+      <a class="card" href="project1.html" data-aos="fade-up">
         <img src="images/project1-1.jpg" alt="Project 1 preview" onerror="this.src='https://via.placeholder.com/800x600?text=Project+1'">
         <div class="meta">
           <strong>Project 1</strong>
@@ -229,7 +218,7 @@
         </div>
       </a>
 
-      <a class="card tilt reveal-up" href="#" target="_blank" aria-label="Project 2">
+      <a class="card" href="#" target="_blank" data-aos="fade-up" data-aos-delay="100">
         <img src="images/project2.jpg" alt="Project 2 preview" onerror="this.src='https://via.placeholder.com/800x600?text=Project+2'">
         <div class="meta">
           <strong>Project 2</strong>
@@ -237,7 +226,7 @@
         </div>
       </a>
 
-      <a class="card tilt reveal-up" href="project3.html" aria-label="Open Project 3 detail">
+      <a class="card" href="project3.html" data-aos="fade-up" data-aos-delay="200">
         <img src="images/project3-1.jpg" alt="Project 3 preview" onerror="this.src='https://via.placeholder.com/800x600?text=Project+3'">
         <div class="meta">
           <strong>Project 3</strong>
@@ -247,7 +236,7 @@
     </section>
 
     <!-- FOOTER / CONTACT -->
-    <footer id="contact" style="margin-top:36px" aria-labelledby="contact-heading">
+    <footer id="contact" aria-labelledby="contact-heading" data-aos="fade-up">
       <div class="contact-row">
         <div class="contact-left">
           <strong>Want a project like this?</strong>
@@ -262,130 +251,9 @@
       <div style="margin-top:14px;color:var(--muted);font-size:13px">Made by Hassan Rawaiz — Clean code & fast delivery.</div>
     </footer>
   </main>
-
-<script>
-  // Respect reduced motion
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // ---- Reveal upward animation (images text moves up and stays) ----
-  (function revealUp(){
-    const items = document.querySelectorAll('.reveal-up');
-    if('IntersectionObserver' in window){
-      const obs = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if(entry.isIntersecting){
-            entry.target.classList.add('in-view');
-            // add in-view to child caption (.desc)
-            entry.target.classList.add('in-view'); 
-            observer.unobserve(entry.target);
-          }
-        });
-      }, {threshold: 0.2});
-      items.forEach(it => obs.observe(it));
-    } else {
-      items.forEach(it => it.classList.add('in-view'));
-    }
-  })();
-
-  // ---- Gentle tilt effect (lower intensity) ----
-  (function tilt(){
-    if(reduceMotion) return;
-    document.querySelectorAll('.tilt').forEach(card=>{
-      card.addEventListener('mousemove', e=>{
-        const rect = card.getBoundingClientRect();
-        const px = (e.clientX - rect.left) / rect.width;
-        const py = (e.clientY - rect.top) / rect.height;
-        const rx = (py - 0.5) * 6;
-        const ry = (px - 0.5) * -6;
-        card.style.transform = `perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`;
-      });
-      card.addEventListener('mouseleave', ()=>{ card.style.transform = ''; });
-    });
-  })();
-
-  // ---- Hero parallax & subtle frame interaction ----
-  (function heroParallax(){
-    if(reduceMotion) return;
-    const frame = document.getElementById('heroFrame');
-    const visual = document.querySelector('.visual');
-    if(!frame || !visual) return;
-
-    visual.addEventListener('mousemove', e=>{
-      const r = visual.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width - 0.5;
-      const y = (e.clientY - r.top) / r.height - 0.5;
-      // subtle rotate + translate
-      frame.style.transform = `translateZ(0) rotateX(${y * -4}deg) rotateY(${x * 6}deg) translateY(${y * -6}px)`;
-    });
-    visual.addEventListener('mouseleave', ()=>{ frame.style.transform = ''; });
-  })();
-
-  // ---- Reveal fade-ins for services (small reveal) ----
-  (function smallReveal(){
-    const elements = document.querySelectorAll('.reveal');
-    if('IntersectionObserver' in window){
-      const obs = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if(entry.isIntersecting){
-            entry.target.classList.add('in-view');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, {threshold: 0.15});
-      elements.forEach(el => obs.observe(el));
-    } else {
-      elements.forEach(el => el.classList.add('in-view'));
-    }
-  })();
-
-  // ---- Counters (animate when in view) ----
-  (function counters(){
-    const counters = [
-      {id:'counter-years', to:4},   // adjust numbers as you want
-      {id:'counter-projects', to:72},
-      {id:'counter-sat', to:98}
-    ];
-    const elList = counters.map(c => document.getElementById(c.id)).filter(Boolean);
-    if(!elList.length) return;
-
-    const doCount = () => {
-      counters.forEach(cfg=>{
-        const el = document.getElementById(cfg.id);
-        if(!el) return;
-        const start = 0;
-        const end = cfg.to;
-        const duration = 1200;
-        const startMs = performance.now();
-        const step = (now) => {
-          const t = Math.min(1, (now - startMs) / duration);
-          const eased = 1 - Math.pow(1 - t, 3);
-          const value = Math.floor(start + (end - start) * eased);
-          el.textContent = cfg.id === 'counter-sat' ? (value + '%') : value;
-          if(t < 1) requestAnimationFrame(step);
-        };
-        requestAnimationFrame(step);
-      });
-    };
-
-    if('IntersectionObserver' in window){
-      const target = document.querySelector('.stats');
-      if(!target) return;
-      const obs = new IntersectionObserver((entries, o)=>{
-        entries.forEach(entry => {
-          if(entry.isIntersecting){
-            doCount();
-            o.unobserve(target);
-          }
-        });
-      }, {threshold:0.2});
-      obs.observe(target);
-    } else {
-      doCount();
-    }
-  })();
-</script>
 </body>
 </html>
+
 
 
 
