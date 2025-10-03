@@ -5,6 +5,19 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>About Me - Hassan Rawaiz</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      AOS.init({
+        duration: 1000,
+        once: true
+      });
+    });
+  </script>
+
   <style>
     body {
       font-family: Inter, sans-serif;
@@ -21,6 +34,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
     header a {
       color: #fff;
@@ -30,31 +46,34 @@
     }
     .container {
       max-width: 900px;
-      margin: 40px auto;
-      padding: 20px;
+      margin: 50px auto;
+      padding: 30px;
       background: #fff;
-      border-radius: 12px;
+      border-radius: 14px;
       box-shadow: 0 6px 18px rgba(0,0,0,0.05);
     }
     h1 {
-      font-size: 32px;
-      margin-bottom: 10px;
+      font-size: 36px;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #0b74de;
     }
     .about-photo {
       float: right;
-      margin-left: 20px;
-      width: 220px;
-      border-radius: 12px;
+      margin-left: 25px;
+      width: 250px;
+      border-radius: 14px;
       box-shadow: 0 6px 18px rgba(0,0,0,0.08);
     }
     p {
-      font-size: 16px;
+      font-size: 17px;
       color: #374151;
+      margin-bottom: 20px;
     }
     footer {
       text-align: center;
       padding: 18px;
-      margin-top: 30px;
+      margin-top: 40px;
       font-size: 14px;
       color: #6b7280;
       border-top: 1px solid #e5e7eb;
@@ -72,16 +91,17 @@
     </nav>
   </header>
 
-  <div class="container">
-    <h1>About Me</h1>
-    <img src="images/hero.jpg" alt="Hassan Rawaiz" class="about-photo">
-    <p>Hello! I’m <strong>Hassan Rawaiz</strong>, a passionate <b>Web Developer and Designer</b> who loves creating modern, clean, and responsive websites. I specialize in web development, offline software solutions, and unique designs that help businesses grow.</p>
-    <p>My goal is to deliver <b>professional, user-friendly, and fast-performing solutions</b> tailored to my clients’ needs. Whether it's a business website, school management software, or creative graphics, I ensure everything I make is polished and impactful.</p>
-    <p>Outside of coding, I enjoy learning new technologies, solving real-world problems with software, and helping businesses go digital.</p>
+  <div class="container" data-aos="fade-up">
+    <h1 data-aos="fade-down">About Me</h1>
+    <img src="images/hero.jpg" alt="Hassan Rawaiz" class="about-photo" data-aos="zoom-in">
+    <p data-aos="fade-right">Hello! I’m <strong>Hassan Rawaiz</strong>, a passionate <b>Web Developer and Designer</b> who loves creating modern, clean, and responsive websites. I specialize in web development, offline software solutions, and unique designs that help businesses grow.</p>
+    <p data-aos="fade-left">My goal is to deliver <b>professional, user-friendly, and fast-performing solutions</b> tailored to my clients’ needs. Whether it's a business website, school management software, or creative graphics, I ensure everything I make is polished and impactful.</p>
+    <p data-aos="fade-up">Outside of coding, I enjoy learning new technologies, solving real-world problems with software, and helping businesses go digital.</p>
   </div>
 
-  <footer>
+  <footer data-aos="fade-up">
     © 2025 Hassan Rawaiz — All Rights Reserved
   </footer>
 </body>
 </html>
+
