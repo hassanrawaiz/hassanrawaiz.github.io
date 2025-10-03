@@ -8,7 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    /* --- keep same variables & background as index.html --- */
     :root{
       --bg:#0e1420;
       --panel:#0b1220;
@@ -32,14 +31,12 @@
         var(--bg);
       color:#eaf2ff;
       font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
       line-height:1.5;
     }
 
     .page{max-width:var(--maxw);margin:28px auto;padding:28px}
 
-    /* header (match index) */
+    /* header */
     header{display:flex;align-items:center;justify-content:space-between;gap:18px}
     .brand{display:flex;gap:12px;align-items:center}
     .logo{
@@ -54,7 +51,7 @@
     nav a{margin-left:14px;color:var(--muted);text-decoration:none;font-weight:600}
     nav a:hover{color:var(--accent-b)}
 
-    /* main about card (glass style) */
+    /* about card */
     .about-card{
       margin-top:22px;
       border-radius:16px;
@@ -83,17 +80,15 @@
     .about-content{flex:1;min-width:240px;padding-right:8px}
     .about-content h1{
       margin:6px 0 12px 0;font-size:28px;color:var(--accent-b);
-      -webkit-text-stroke: 0.01em rgba(255,255,255,0.02);
     }
     .about-content p{
-      color: #cfe7ff; /* lighter text for contrast */
+      color: #cfe7ff;
       margin:0 0 14px 0;
       font-size:15.5px;
       line-height:1.7;
-      padding:6px 0; /* added breathing room */
+      padding:6px 0;
     }
 
-    /* small detail boxes */
     .details{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
     .detail{
       background:var(--panel);
@@ -102,14 +97,12 @@
     }
     .detail strong{display:block;color:#eaf2ff;font-size:18px}
 
-    /* footer - match index style */
     footer{margin-top:36px;padding:22px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));border:1px solid rgba(255,255,255,0.02);color:var(--muted);font-size:13px}
 
-    /* reveal animation styles: move up on scroll and stay */
+    /* reveal animation */
     .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s cubic-bezier(.2,.9,.2,1), transform .6s cubic-bezier(.2,.9,.2,1)}
     .reveal.in-view{opacity:1;transform:none}
 
-    /* responsive */
     @media (max-width:900px){
       .about-card{flex-direction:column;align-items:center;text-align:center}
       .about-content{padding:0}
@@ -117,7 +110,6 @@
       .about-photo{width:260px}
     }
 
-    /* respect reduced motion */
     @media (prefers-reduced-motion: reduce){
       .reveal{transition:none !important}
     }
@@ -125,17 +117,17 @@
 </head>
 <body>
   <main class="page">
-    <!-- header same as index -->
+    <!-- header -->
     <header>
       <div class="brand">
-        <div class="logo" aria-hidden="true">HR</div>
+        <div class="logo">HR</div>
         <div>
           <div class="title">Hassan Rawaiz</div>
           <div class="sub">Websites • Software • Design</div>
         </div>
       </div>
 
-      <nav aria-label="Main">
+      <nav>
         <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="index.html#portfolio">Portfolio</a>
@@ -143,28 +135,23 @@
       </nav>
     </header>
 
-    <!-- About card matches index colors & style -->
-    <section class="about-card" aria-labelledby="about-title">
-      <div class="about-photo reveal" id="photoWrap">
+    <!-- about -->
+    <section class="about-card">
+      <div class="about-photo reveal">
         <img src="images/hero.jpg" alt="Hassan Rawaiz" onerror="this.src='https://via.placeholder.com/600x600?text=Your+Image'">
       </div>
 
       <div class="about-content">
-        <h1 id="about-title" class="reveal">About Me</h1>
+        <h1 class="reveal">About Me</h1>
 
-        <p class="reveal">Hi — I’m <strong>Hassan Rawaiz</strong>, a web & software developer and designer. I build modern, performant websites and offline systems (hotel, library, school management), and craft print-ready marketing materials like business cards and banners. My work focuses on clarity, speed and real user value.</p>
+        <p class="reveal">Hi — I’m <strong>Hassan Rawaiz</strong>, a web & software developer and designer. I build modern, performant websites and offline systems (hotel, library, school management), and craft print-ready marketing materials like business cards and banners.</p>
 
-        <p class="reveal">I deliver tailored solutions: responsive landing pages, small web apps and desktop software, and visual brand identities. I value readable code, easy maintenance, and clean design that helps businesses convert and grow.</p>
+        <p class="reveal">I deliver tailored solutions: responsive landing pages, small web apps and desktop software, and visual brand identities. I value clean code, easy maintenance, and design that helps businesses grow.</p>
 
         <div class="details">
-          <div class="detail reveal"><strong>4+</strong><small>Years Experience</small></div>
-          <div class="detail reveal"><strong>70+</strong><small>Projects Delivered</small></div>
-          <div class="detail reveal"><strong>98%</strong><small>Client Satisfaction</small></div>
-        </div>
-
-        <div style="margin-top:18px;">
-          <a class="btn" href="FIVERR_LINK" target="_blank" rel="noopener" style="display:inline-block;margin-right:12px;">Hire on Fiverr</a>
-          <a class="btn-outline" href="index.html#contact">Contact</a>
+          <div class="detail reveal"><strong>4+</strong>Years Experience</div>
+          <div class="detail reveal"><strong>70+</strong>Projects Delivered</div>
+          <div class="detail reveal"><strong>98%</strong>Client Satisfaction</div>
         </div>
       </div>
     </section>
@@ -175,14 +162,13 @@
   </main>
 
   <script>
-    // simple reveal-on-scroll (same behavior / feel as index)
+    // reveal on scroll
     (function reveal(){
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if(reduceMotion) {
         document.querySelectorAll('.reveal').forEach(el => el.classList.add('in-view'));
         return;
       }
-
       const obs = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
           if(entry.isIntersecting){
@@ -191,12 +177,12 @@
           }
         });
       }, {threshold: 0.18});
-
       document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
     })();
   </script>
 </body>
 </html>
+
 
 
 
