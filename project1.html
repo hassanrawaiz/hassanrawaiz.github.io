@@ -6,58 +6,201 @@
   <title>Project 1 — Hassan Rawaiz</title>
   <meta name="description" content="Project 1 detail page" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      AOS.init({ duration: 1000, once: true });
+    });
+  </script>
+
   <style>
-    :root{ --accent:#0b74de; --muted:#6b7280; --maxw:1100px; --bg:#fbfdff }
+    :root {
+      --accent:#0b74de;
+      --bg:#0d1117;
+      --card:#111827;
+      --muted:#9ca3af;
+      --maxw:1100px;
+    }
     *{box-sizing:border-box}
-    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial;margin:0;background:var(--bg);color:#0f172a}
-    .wrap{max-width:var(--maxw);margin:36px auto;padding:18px}
-    header{display:flex;justify-content:space-between;align-items:center;gap:12px}
-    header .brand{display:flex;gap:10px;align-items:center;font-weight:700}
-    a{color:var(--accent);text-decoration:none}
-    .hero{margin-top:18px}
-    h1{margin:6px 0;font-size:22px}
-    p.lead{color:var(--muted)}
-    .meta{margin-top:6px;color:var(--muted);font-size:14px}
-    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:18px}
-    .thumb{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 8px 20px rgba(12,14,24,0.06);cursor:pointer}
-    .thumb img{width:100%;height:180px;object-fit:cover;display:block}
-    .caption{padding:10px;font-size:14px;color:var(--muted)}
-    .back{display:inline-block;margin-top:14px;padding:8px 12px;border-radius:8px;border:1px solid rgba(11,116,222,0.12);background:#fff}
+    body {
+      font-family: Inter, sans-serif;
+      margin: 0;
+      background: var(--bg);
+      color: #f9fafb;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Header */
+    header {
+      background: #0b74de;
+      color: #fff;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    header a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 16px;
+      font-weight: 600;
+    }
+
+    .wrap {
+      max-width: var(--maxw);
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 12px;
+      color: var(--accent);
+    }
+    p.lead {
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .meta {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    /* Back button */
+    .back {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 10px 16px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent), #06b6d4);
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: transform 0.2s ease;
+    }
+    .back:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .thumb {
+      background: var(--card);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .thumb:hover { transform: translateY(-4px); }
+    .thumb img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+    .caption {
+      padding: 10px;
+      font-size: 14px;
+      color: var(--muted);
+      text-align: center;
+    }
+
     /* Lightbox modal */
-    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(10,12,18,0.7);z-index:50}
-    .modal.open{display:flex}
-    .modal img{max-width:96%;max-height:90%;border-radius:8px;box-shadow:0 18px 60px rgba(2,6,23,0.7)}
-    .modal .close{position:absolute;top:18px;right:18px;color:white;font-size:22px;padding:6px 10px}
-    /* responsive */
-    @media (max-width:700px){ .thumb img{height:140px} h1{font-size:20px} }
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(10,12,18,0.85);
+      z-index: 1000;
+    }
+    .modal.open { display: flex; }
+    .modal img {
+      max-width: 90%;
+      max-height: 85%;
+      border-radius: 10px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+    }
+    .modal .close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+      background: rgba(0,0,0,0.4);
+      border: none;
+      border-radius: 50%;
+      padding: 6px 12px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 18px;
+      margin-top: 40px;
+      font-size: 14px;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    @media(max-width:700px){
+      h1{font-size:24px}
+      .thumb img{height:150px}
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand"><div style="width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#06b6d4);color:#fff;display:flex;align-items:center;justify-content:center">YR</div> Hassan Rawaiz</div>
-      <nav><a href="index.html">← Back to portfolio</a></nav>
-    </header>
+  <header data-aos="fade-down">
+    <div><strong>Hassan Rawaiz</strong></div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="index.html#portfolio">Portfolio</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
 
-    <section class="hero">
-      <h1>Project 1 — Leafzee Website</h1>
-      <div class="meta">Website • Landing page • Tools used: HTML, CSS, JS</div>
-      <p class="lead">Founded Leafzee (www.leafzee.com), a skincare brand, and led the vision, design, and development of its online presence.</p>
-      <a class="back" href="index.html">Back to portfolio</a>
+  <div class="wrap">
+    <section class="hero" data-aos="fade-up">
+      <h1 data-aos="fade-right">Project 1 — Leafzee Website</h1>
+      <div class="meta" data-aos="fade-left">Website • Landing page • Tools used: HTML, CSS, JS</div>
+      <p class="lead" data-aos="fade-up">
+        Founded Leafzee (<a href="https://www.leafzee.com" target="_blank">www.leafzee.com</a>), a skincare brand, 
+        and led the vision, design, and development of its online presence.
+      </p>
+      <a class="back" href="index.html#portfolio" data-aos="zoom-in">← Back to portfolio</a>
     </section>
 
     <section class="gallery" id="gallery">
-      <!-- Replace these src with your uploaded images -->
-      <div class="thumb"><img src="images/project1-1.jpg" alt="Project 1 - homepage" data-full="images/project1-1.jpg"><div class="caption">Homepage</div></div>
-      <div class="thumb"><img src="images/project1-2.jpg" alt="Project 1 - homepage" data-full="images/project1-2.jpg"><div class="caption">Homepage</div></div>
-      <div class="thumb"><img src="images/project1-3.jpg" alt="Project 1 - homepage" data-full="images/project1-3.jpg"><div class="caption">Homepage</div></div>
-      <div class="thumb"><img src="images/project1-4.jpg" alt="Project 1 - homepage" data-full="images/project1-4.jpg"><div class="caption">Homepage</div></div>
-      <div class="thumb"><img src="images/project1-5.jpg" alt="Project 1 - homepage" data-full="images/project1-5.jpg"><div class="caption">Homepage</div></div>
-      <!-- add more thumbs as needed -->
+      <div class="thumb" data-aos="zoom-in"><img src="images/project1-1.jpg" alt="Homepage" data-full="images/project1-1.jpg"><div class="caption">Homepage</div></div>
+      <div class="thumb" data-aos="zoom-in"><img src="images/project1-2.jpg" alt="Section" data-full="images/project1-2.jpg"><div class="caption">Section</div></div>
+      <div class="thumb" data-aos="zoom-in"><img src="images/project1-3.jpg" alt="Feature" data-full="images/project1-3.jpg"><div class="caption">Feature</div></div>
+      <div class="thumb" data-aos="zoom-in"><img src="images/project1-4.jpg" alt="About" data-full="images/project1-4.jpg"><div class="caption">About</div></div>
+      <div class="thumb" data-aos="zoom-in"><img src="images/project1-5.jpg" alt="Contact" data-full="images/project1-5.jpg"><div class="caption">Contact</div></div>
     </section>
   </div>
 
-  <!-- Lightbox modal -->
+  <footer data-aos="fade-up">
+    © 2025 Hassan Rawaiz — All Rights Reserved
+  </footer>
+
+  <!-- Lightbox -->
   <div id="lightbox" class="modal" role="dialog" aria-hidden="true">
     <button class="close" id="closeBtn" aria-label="Close">✕</button>
     <img id="lightboxImage" src="" alt="Preview">
@@ -92,3 +235,4 @@
   </script>
 </body>
 </html>
+
