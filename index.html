@@ -32,42 +32,6 @@
       --radius:14px;
       --gap:20px;
     }
-    .portfolio {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-}
-
-.portfolio .card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 15px;
-  border-radius: 12px;
-  background: #0d1117;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
-
-.portfolio .meta {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex-grow: 1;
-}
-
-.portfolio .meta h3 {
-  margin-bottom: 8px;
-}
-
-.portfolio .meta p.desc {
-  flex-grow: 1; /* pushes button down */
-  margin-bottom: 12px;
-}
-
-.portfolio .btn {
-  align-self: flex-start; /* button stays aligned */
-}
-
 
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -86,7 +50,15 @@
     }
 
     .page{max-width:var(--maxw);margin:28px auto;padding:28px}
-    header{display:flex;align-items:center;justify-content:space-between;gap:18px}
+
+    /* HEADER */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+    }
     .brand{display:flex;gap:12px;align-items:center}
     .logo{
       width:56px;height:56px;border-radius:12px;
@@ -99,6 +71,29 @@
 
     nav a{margin-left:14px;color:var(--muted);text-decoration:none;font-weight:600}
     nav a:hover{color:var(--accent-b)}
+
+    /* MOBILE FIX */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .brand {
+        margin-bottom: 12px;
+      }
+      nav {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+      }
+      nav a {
+        margin: 0;
+        padding: 8px 10px;
+        font-size: 15px;
+      }
+    }
 
     .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin-top:22px}
     .hero-left{padding:18px}
@@ -304,6 +299,7 @@
   </main>
 </body>
 </html>
+
 
 
 
