@@ -12,16 +12,12 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      AOS.init({
-        duration: 1000,
-        once: true
-      });
+      AOS.init({ duration: 1000, once: true });
     });
   </script>
 
   <style>
-    /* Match index.html color scheme & visual language */
-    :root{
+    :root {
       --bg:#0e1420;
       --panel:#0b1220;
       --muted:#9aa4b2;
@@ -31,7 +27,6 @@
       --glass: rgba(255,255,255,0.03);
       --maxw:1100px;
       --radius:14px;
-      --gap:20px;
     }
 
     *{box-sizing:border-box}
@@ -51,23 +46,53 @@
 
     .page{max-width:var(--maxw);margin:28px auto;padding:28px}
 
-    /* header (same look as index) */
-    header{display:flex;align-items:center;justify-content:space-between;gap:18px}
-    .brand{display:flex;gap:12px;align-items:center}
-    .logo{
-      width:56px;height:56px;border-radius:12px;
-      background:linear-gradient(135deg,var(--accent-a),var(--accent-c));
-      display:flex;align-items:center;justify-content:center;font-weight:800;color:#03121a;font-size:18px;
+    /* HEADER (responsive like index.html) */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .brand {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .logo {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent-a), var(--accent-c));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #03121a;
+      font-size: 18px;
       box-shadow: 0 10px 30px rgba(2,6,23,0.6);
     }
-    .title{font-weight:800; font-size:16px; color: #eaf2ff}
-    .sub{font-size:12px;color:var(--muted)}
+    .title { font-weight:800; font-size:16px; color:#eaf2ff; }
+    .sub { font-size:12px; color:var(--muted); }
 
-    nav a{margin-left:14px;color:var(--muted);text-decoration:none;font-weight:600}
-    nav a:hover{color:var(--accent-b)}
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 6px 10px;
+    }
+    nav a:hover { color: var(--accent-b); }
 
-    /* about card (glass) */
-    .about-card{
+    /* ABOUT CARD */
+    .about-card {
       margin-top:22px;
       border-radius:16px;
       background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
@@ -90,13 +115,13 @@
       background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
       padding:10px;
     }
-    .about-photo img{display:block;width:100%;height:auto;border-radius:8px;object-fit:cover}
+    .about-photo img { display:block;width:100%;height:auto;border-radius:8px;object-fit:cover; }
 
-    .about-content{flex:1;min-width:240px;padding-right:8px}
-    .about-content h1{
+    .about-content { flex:1;min-width:240px;padding-right:8px; }
+    .about-content h1 {
       margin:6px 0 12px 0;font-size:28px;color:var(--accent-b);
     }
-    .about-content p{
+    .about-content p {
       color: #cfe7ff;
       margin:0 0 14px 0;
       font-size:15.5px;
@@ -104,18 +129,69 @@
       padding:6px 0;
     }
 
-    .details{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap}
-    .detail{
-      background:var(--panel);
-      padding:12px 14px;border-radius:10px;border:1px solid var(--glass);
-      color:var(--muted);min-width:140px;
+    .details {
+      display:flex;
+      gap:12px;
+      margin-top:12px;
+      flex-wrap:wrap;
     }
-    .detail strong{display:block;color:#eaf2ff;font-size:18px}
+    .detail {
+      background:var(--panel);
+      padding:12px 14px;
+      border-radius:10px;
+      border:1px solid var(--glass);
+      color:var(--muted);
+      min-width:140px;
+    }
+    .detail strong {
+      display:block;
+      color:#eaf2ff;
+      font-size:18px;
+    }
 
-    footer{margin-top:36px;padding:22px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));border:1px solid rgba(255,255,255,0.02);color:var(--muted);font-size:13px}
+    /* BUTTONS (match index.html gradient) */
+    .btn {
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 16px;
+      border-radius:12px;
+      border:none;
+      background:linear-gradient(90deg,var(--accent-b),var(--accent-a));
+      color:#06202a;
+      font-weight:800;
+      text-decoration:none;
+      box-shadow:0 12px 40px rgba(10,90,220,0.08);
+      transition:transform .22s, box-shadow .22s;
+    }
+    .btn:hover { transform:translateY(-4px);box-shadow:0 20px 60px rgba(10,90,220,0.13); }
 
-    /* responsiveness */
-    @media (max-width:900px){
+    .btn-outline {
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.04);
+      color:var(--accent-a);
+      background:transparent;
+      text-decoration:none;
+      font-weight:700;
+    }
+
+    footer {
+      margin-top:36px;
+      padding:22px;
+      border-radius:12px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+      border:1px solid rgba(255,255,255,0.02);
+      color:var(--muted);
+      font-size:13px;
+      text-align:center;
+    }
+
+    /* RESPONSIVE FIX FOR MOBILE (like index.html) */
+    @media (max-width:980px){
+      header { flex-direction:column;align-items:flex-start;gap:12px; }
+      nav { width:100%;display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-start; }
+      nav a { margin:0;padding:6px 8px; }
       .about-card{flex-direction:column;align-items:center;text-align:center}
       .about-content{padding:0}
       .details{justify-content:center}
@@ -125,7 +201,6 @@
 </head>
 <body>
   <main class="page">
-    <!-- header with AOS fade-down -->
     <header data-aos="fade-down">
       <div class="brand">
         <div class="logo" aria-hidden="true">HR</div>
@@ -143,7 +218,6 @@
       </nav>
     </header>
 
-    <!-- about card with AOS fade-up -->
     <section class="about-card" data-aos="fade-up" aria-labelledby="about-title">
       <div class="about-photo" data-aos="zoom-in">
         <img src="images/hero.jpg" alt="Hassan Rawaiz" onerror="this.src='https://via.placeholder.com/600x600?text=Your+Image'">
@@ -163,7 +237,7 @@
         </div>
 
         <div style="margin-top:18px;" data-aos="fade-up">
-          <a class="btn" href="FIVERR_LINK" target="_blank" rel="noopener" style="display:inline-block;margin-right:12px;">Hire on Fiverr</a>
+          <a class="btn" href="https://wa.me/923001234567" target="_blank" rel="noopener">WhatsApp</a>
           <a class="btn-outline" href="index.html#contact">Contact</a>
         </div>
       </div>
@@ -175,6 +249,7 @@
   </main>
 </body>
 </html>
+
 
 
 
