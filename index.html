@@ -247,40 +247,134 @@
     </section>
 
     <!-- PORTFOLIO -->
-    <h2 id="portfolio" style="margin-top:28px" data-aos="fade-down">Portfolio</h2>
-       <section class="portfolio" aria-label="Portfolio">
-  
-   <!-- Project 1 -->
-   <div class="card tilt reveal-up" data-aos="zoom-in">
-       <img src="images/project1-1.jpg" alt="Project 1 preview" onerror="this.src='https://via.placeholder.com/800x600?text=Project+1'">
-       <div class="meta">
-       <h3 style="margin:0 0 6px 0;">Project 1</h3>
-       <p class="desc">Website • Full preview of homepage and inner pages</p>
-       <a class="btn" href="project1.html">View Project</a>
-       </div>
-   </div>
+   <section id="portfolio" class="portfolio-section" data-aos="fade-up">
+  <h2 style="text-align:center;margin-bottom:30px;">Portfolio</h2>
 
-   <!-- Project 2 -->
-   <div class="card tilt reveal-up" data-aos="zoom-in" data-aos-delay="100">
-       <img src="images/project2.jpg" alt="Project 2 preview" onerror="this.src='https://via.placeholder.com/800x600?text=Project+2'">
-       <div class="meta">
-       <h3 style="margin:0 0 6px 0;">Project 2</h3>
-       <p class="desc">Business Card • Professional print ready design</p>
-       <a class="btn" href="#">View Project</a>
-       </div>
-   </div>
-
-   <!-- Project 3 -->
-   <div class="card tilt reveal-up" data-aos="zoom-in" data-aos-delay="200">
-      <img src="images/project3-1.jpg" alt="Project 3 preview" onerror="this.src='https://via.placeholder.com/800x600?text=Project+3'">
+  <div class="portfolio-grid">
+    <!-- Project 1 -->
+    <div class="card tilt reveal-up" data-aos="zoom-in">
+      <img src="images/project1-1.jpg" alt="Project 1 preview"
+           onerror="this.src='https://via.placeholder.com/800x600?text=Project+1'">
       <div class="meta">
-      <h3 style="margin:0 0 6px 0;">Project 3</h3>
-      <p class="desc">Offline Software • Hotels, Libraries, Schools</p>
-      <a class="btn" href="project3.html">View Project</a>
+        <h3>Project 1</h3>
+        <p class="desc">Website • Full preview of homepage and inner pages</p>
+        <div class="card-footer">
+          <a class="btn" href="project1.html">View Project</a>
+        </div>
       </div>
     </div>
 
-    </section>
+    <!-- Project 2 -->
+    <div class="card tilt reveal-up" data-aos="zoom-in" data-aos-delay="100">
+      <img src="images/project2.jpg" alt="Project 2 preview"
+           onerror="this.src='https://via.placeholder.com/800x600?text=Project+2'">
+      <div class="meta">
+        <h3>Project 2</h3>
+        <p class="desc">Business Card • Professional print ready design</p>
+        <div class="card-footer">
+          <a class="btn" href="#">View Project</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="card tilt reveal-up" data-aos="zoom-in" data-aos-delay="200">
+      <img src="images/project3-1.jpg" alt="Project 3 preview"
+           onerror="this.src='https://via.placeholder.com/800x600?text=Project+3'">
+      <div class="meta">
+        <h3>Project 3</h3>
+        <p class="desc">Offline Software • Hotels, Libraries, Schools</p>
+        <div class="card-footer">
+          <a class="btn" href="project3.html">View Project</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Portfolio grid */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 50px rgba(0,0,0,0.4);
+  }
+
+  .card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .meta {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+    padding: 16px 20px 20px;
+  }
+
+  .meta h3 {
+    margin: 0 0 8px;
+    font-size: 20px;
+    color: var(--accent-b);
+  }
+
+  .meta .desc {
+    flex-grow: 1;
+    color: var(--muted);
+    margin-bottom: 16px;
+    min-height: 44px; /* Ensures equal height for variable text */
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+  }
+
+  .btn {
+    background: linear-gradient(135deg, var(--accent-a), var(--accent-b));
+    color: #03121a;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(96,165,250,0.4);
+  }
+
+  @media (max-width: 600px) {
+    .meta h3 {
+      font-size: 18px;
+    }
+    .meta .desc {
+      font-size: 14px;
+      min-height: auto;
+    }
+  }
+</style>
 
 
     <!-- FOOTER -->
